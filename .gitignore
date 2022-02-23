@@ -1,0 +1,12 @@
+#Ricoshooter FTS
+Ricoshooter FTS/*
+!Ricoshooter FTS/Assets/
+
+Ricoshooter FTS/Assets/*
+!Ricoshooter FTS/Assets/Scripts
+
+*.meta
+#
+
+
+
