@@ -1,0 +1,11 @@
+											
+	- Найти код 								
+	- unit tests								
+	- use case									
+	- uml										
+	- рефактор									
+	- new unit tests								
+	- programm efficency							
+											
+																																																							
+				
