@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="market billing system (start version).cpp" />
+    <ClCompile Include="market billing system (new version).cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="market billing system (start version).cpp">
+    <ClCompile Include="market billing system (new version).cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
