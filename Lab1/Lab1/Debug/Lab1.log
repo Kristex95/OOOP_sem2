@@ -1,1 +1,4 @@
-﻿  Lab1.vcxproj -> F:\Учеба\2-й_Курс\Об'єктно Орієнтоване Програмування\OOOP_sem2\Lab1\Debug\Lab1.exe
+﻿  market billing system 2.cpp
+F:\Учеба\2-й_Курс\Об'єктно Орієнтоване Програмування\OOOP_sem2\Lab1\Lab1\market billing system 2.cpp(291,5): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "SUCCEED"
+F:\Учеба\2-й_Курс\Об'єктно Орієнтоване Програмування\OOOP_sem2\Lab1\Lab1\market billing system 2.cpp(294,5): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "SUCCEED"
+  Lab1.vcxproj -> F:\Учеба\2-й_Курс\Об'єктно Орієнтоване Програмування\OOOP_sem2\Lab1\Debug\Lab1.exe

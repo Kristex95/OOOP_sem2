@@ -139,10 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="market billing system (new version).cpp" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="C:\Users\Kristex\Desktop\shell.c" />
+    <ClCompile Include="C:\Users\Kristex\Desktop\sqlite3.c" />
+    <ClCompile Include="market billing system 2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Kristex\Desktop\sqlite3.h" />
+    <ClInclude Include="C:\Users\Kristex\Desktop\sqlite3ext.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
