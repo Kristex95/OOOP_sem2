@@ -85,13 +85,6 @@ public:
         cout<<"\n\n\tDate : ";
         cout<<d.mm<<"-"<<d.dd<<"-"<<d.yy;
     }
-    void report()
-    {
-        gotoxy(3,k);
-        cout<<itemno;
-        gotoxy(13,k);
-        puts(name);
-    }
 };
 
 class amount: public item
@@ -121,7 +114,6 @@ public:
     void add();
     void add(float price, int qty, float tax, float dis);
     void show();
-    void report();
     void calculate();
 } amt;
 
@@ -185,45 +177,6 @@ void amount::show()
     fin.close();
 }
 
-void amount::report()
-{
-    item::report();
-    gotoxy(23,k);
-    cout<<price;
-    gotoxy(33,k);
-    cout<<qty;
-    gotoxy(44,k);
-    cout<<tax;
-    gotoxy(52,k);
-    cout<<dis;
-    gotoxy(64,k);
-    cout<<netamt;
-    k=k+1;
-    if(k==50)
-    {
-        gotoxy(25,50);
-        cout<<"PRESS ANY KEY TO CONTINUE...";
-        _getch();
-        k=7;
-        system("cls");
-        gotoxy(30,3);
-        cout<<" ITEM DETAILS ";
-        gotoxy(3,5);
-        cout<<"NUMBER";
-        gotoxy(13,5);
-        cout<<"NAME";
-        gotoxy(23,5);
-        cout<<"PRICE";
-        gotoxy(33,5);
-        cout<<"QUANTITY";
-        gotoxy(44,5);
-        cout<<"TAX";
-        gotoxy(52,5);
-        cout<<"DEDUCTION";
-        gotoxy(64,5);
-        cout<<"NET AMOUNT";
-    }
-}
 
 void addRec() {
     //fout.open("itemstore.dat", ios::binary | ios::app);
