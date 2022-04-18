@@ -1,7 +1,6 @@
 #include<iostream>
 #include<windows.h>
 #include<conio.h>
-#include<fstream>
 #include<cstring>
 #include <string>
 #include<cstdio>
@@ -18,6 +17,8 @@ sqlite3_stmt* stmt;
 COORD coord = {0, 0};
 char* messageError;
 
+
+//place cursor 
 void gotoxy(int x, int y)
 {
     COORD coord;
@@ -25,20 +26,16 @@ void gotoxy(int x, int y)
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
+
 struct date
 {
     int mm,dd,yy;
 };
 
-ofstream fout;
-ifstream fin;
-fstream tmp("temp.dat", ios::binary | ios::out);
-
+//gets values from query
 int The_Callback(void* a_param, int argc, char** argv, char** column) {
     cout << "\t";
     for (int i = 0; i < argc; i++) {
-        /*string a = argv[i];
-        cout << a << endl;*/
         printf("%s,\t", argv[i]);
     }
     printf("\n");
@@ -75,15 +72,6 @@ public:
 //gets(name);
         cout<<"\n\n\tManufacturing Date(dd-mm-yy): ";
         cin>>d.mm>>d.dd>>d.yy;
-    }
-    void show()
-    {
-        cout<<"\n\tItem No: ";
-        cout<<itemno;
-        cout<<"\n\n\tName of the item: ";
-        cout<<name;
-        cout<<"\n\n\tDate : ";
-        cout<<d.mm<<"-"<<d.dd<<"-"<<d.yy;
     }
 };
 
@@ -134,27 +122,6 @@ void amount::collect() {
 void amount::add()
 {
     collect();
-    string sqlstatement = "INSERT INTO items (itemno, name, date, price, qty, tax, gross, dis, netamt) VALUES (" 
-        + to_string(getItemno()) + ",'"
-        + getName() + "','"
-        + to_string(getDate().yy) + "-" + to_string(getDate().mm) + "-" + to_string(getDate().dd) + "'," 
-        + to_string(this->price) + "," 
-        + to_string(this->qty) + "," 
-        + to_string(this->tax) + "," 
-        + to_string(this->gross) + "," 
-        + to_string(this->dis) + "," 
-        + to_string(this->netamt) + ");";
-
-    if (sqlite3_open("bill.db", &db) == SQLITE_OK)
-    {
-        sqlite3_exec(db, sqlstatement.c_str(), NULL, 0, &messageError);
-    }
-    else
-    {
-        cout << "Failed to open db\n";
-    }
-    //fout.write((char *)&amt,sizeof(amt));
-    //fout.close();
 }
 void amount::add(float _price, int _qty, float _tax, float _dis) {
     price = _price;
@@ -169,22 +136,34 @@ void amount::calculate()
     gross=price+(price*(tax/100));
     netamt=qty*(gross-(gross*(dis/100)));
 }
-void amount::show()
-{
-    item::show();
-    cout<<"\n\n\tNet amount: ";
-    cout<<netamt;
-    fin.close();
-}
+
 
 
 void addRec() {
-    //fout.open("itemstore.dat", ios::binary | ios::app);
     rc = sqlite3_open("bill.db", &db);
 
     amt.add();
+    string sqlstatement = "INSERT INTO items (itemno, name, date, price, qty, tax, gross, dis, netamt) VALUES ("
+        + to_string(amt.getItemno()) + ",'"
+        + amt.getName() + "','"
+        + to_string(amt.getDate().yy) + "-" + to_string(amt.getDate().mm) + "-" + to_string(amt.getDate().dd) + "',"
+        + to_string(amt.getPrice()) + ","
+        + to_string(amt.getQty()) + ","
+        + to_string(amt.getTax()) + ","
+        + to_string(amt.getGross()) + ","
+        + to_string(amt.getDis()) + ","
+        + to_string(amt.getNetamt()) + ");";
+
+    if (sqlite3_open("bill.db", &db) == SQLITE_OK)
+    {
+        sqlite3_exec(db, sqlstatement.c_str(), NULL, 0, &messageError);
+    }
+    else
+    {
+        cout << "Failed to open db\n";
+    }
+
     cout << "\n\t\tItem Added Successfully!";
-    _getch();
 }
 
 void deleteRec(int cho) {
@@ -213,7 +192,7 @@ void editRec(int cho) {
     }
 }
 
-int showRec(int cho) {
+void showRec(int cho) {
 
     string sqlstatement = "SELECT * FROM items WHERE itemno=" + to_string(cho) + ";";
 
@@ -225,7 +204,6 @@ int showRec(int cho) {
     {
         cout << "Failed to open db\n";
     }
-    return 1;
 }
 
 TEST(ProgramTest, ShowItemTest) {
@@ -334,17 +312,20 @@ db:
         {
         case 1:
             addRec();
+            _getch();
             goto db;
         case 2:
             int ino;
             cout << "\n\n\tEnter Item Number to be deleted :";
             cin >> ino;
             deleteRec(ino);
+            _getch();
             goto db;
         case 3:
             cout << "\n\n\t\tEnter Item Number: ";
             cin >> ino;
             editRec(ino);
+            _getch();
             goto db;
         case 4:
             goto menu;
